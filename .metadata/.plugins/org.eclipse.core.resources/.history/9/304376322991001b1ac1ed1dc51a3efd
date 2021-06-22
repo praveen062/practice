@@ -1,0 +1,64 @@
+package com.example.datastructures.linkedlist.doublelinkedlist;
+
+public class DoubleLinkedListNode<T> {
+	Node<T> head;
+	Node<T> tail;
+	
+	public Node add(T data) {
+		Node node = new Node<T>(data);
+		if(head == null && tail == null) {
+			head = node;
+			tail = node;
+		} else {
+			node.next = tail.next;
+			tail.next = node;
+		}
+		return node;
+	}
+	
+	public void delete(Node<T> node) {
+		if(head == node && tail == null) {
+			head = null;
+			tail = null;
+		}else if(head == node && tail != node) {
+			head = head.next;
+			head.previous.next = null;
+			head.previous = null;
+		} else if ( head !=node && tail == node) {
+			tail = tail.previous;
+			tail.next.previous = null;
+			tail.next = null;
+		} else {
+			node.previous.next = node.next;
+			node.next.previous = node.previous;
+			node.previous = null;
+			node.next = null;
+		}
+	}
+	
+	public void printFromhead(Node node) {
+		if(node == null) {
+			return;
+		}else {
+			while(node.next != null) {
+				System.out.print(node.data+" ->");
+				node = node.next;
+			}
+			System.out.println();
+			
+		}
+	}
+	
+	public void printFromTail(Node tail) {
+		if(tail == null) {
+			return;
+		}else {
+			while(tail.previous != null) {
+				System.out.print(tail.data+" ->");
+				tail = tail.previous;
+			}
+			System.out.println();
+			
+		}
+	}
+}

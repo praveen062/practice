@@ -1,0 +1,25 @@
+package com.example.datastructures.linkedlist.doublelinkedlist;
+
+import java.util.HashMap;
+
+public class DoubleLinkedListService {
+	HashMap<Integer, Node<Integer>> map = new HashMap<Integer, Node<Integer>>();
+	DoubleLinkedListNode<Integer> d;
+	public static void main(String[] args) {
+		DoubleLinkedListService doubleLinkedListService = new DoubleLinkedListService();
+		doubleLinkedListService.d = new DoubleLinkedListNode<Integer>();
+	}
+	
+	public void create(Integer key) {
+		if(!map.containsKey(key)) {
+			map.put(key, d.add(key) );
+		}
+	}
+	
+	public void delete(Integer key ) {
+		if( map.containsKey(key)) {
+			d.delete(map.get(key));
+			map.remove(key);
+		}
+	}
+}
